@@ -1,0 +1,161 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{5FF5C138-ED9E-4120-B787-B8300AEE2EB0}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MegaDumper</RootNamespace>
+    <AssemblyName>MegaDumper</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Mihai\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <ApplicationIcon>..\SND Blue Square.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs" />
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetectAntidumps.cs" />
+    <Compile Include="DetectAntidumps.Designer.cs">
+      <DependentUpon>DetectAntidumps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnumAppDomains.cs" />
+    <Compile Include="EnumAppDomains.Designer.cs">
+      <DependentUpon>EnumAppDomains.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModules.cs" />
+    <Compile Include="FrmModules.Designer.cs">
+      <DependentUpon>FrmModules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateDmp.cs" />
+    <Compile Include="GenerateDmp.Designer.cs">
+      <DependentUpon>GenerateDmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeapHealper.cs" />
+    <Compile Include="HeapView.cs" />
+    <Compile Include="HeapView.Designer.cs">
+      <DependentUpon>HeapView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmptyForm.cs" />
+    <Compile Include="EmptyForm.Designer.cs">
+      <DependentUpon>EmptyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstalledFramework.cs" />
+    <Compile Include="InstalledFramework.Designer.cs">
+      <DependentUpon>InstalledFramework.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs" />
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagedInjector.cs" />
+    <Compile Include="ManagedInjector.Designer.cs">
+      <DependentUpon>ManagedInjector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiniDmp.cs" />
+    <Compile Include="NetPerformance.cs" />
+    <Compile Include="NetPerformance.Designer.cs">
+      <DependentUpon>NetPerformance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessManager.cs" />
+    <Compile Include="ProcessManager.Designer.cs">
+      <DependentUpon>ProcessManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\EnumWindows.cs" />
+    <Compile Include="Utils\HandleEnumeration.cs" />
+    <Compile Include="Utils\MemoryAlloc.cs" />
+    <Compile Include="Utils\ProcessStatistics.cs" />
+    <Compile Include="Utils\ProcessUtil.cs" />
+    <Compile Include="ViewWindowsHoocks.cs" />
+    <Compile Include="ViewWindowsHoocks.Designer.cs">
+      <DependentUpon>ViewWindowsHoocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualMemoryView.cs" />
+    <Compile Include="VirtualMemoryView.Designer.cs">
+      <DependentUpon>VirtualMemoryView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetectAntidumps.resx">
+      <DependentUpon>DetectAntidumps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnumAppDomains.resx">
+      <DependentUpon>EnumAppDomains.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmModules.resx">
+      <DependentUpon>FrmModules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerateDmp.resx">
+      <DependentUpon>GenerateDmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeapView.resx">
+      <DependentUpon>HeapView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmptyForm.resx">
+      <DependentUpon>EmptyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstalledFramework.resx">
+      <DependentUpon>InstalledFramework.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagedInjector.resx">
+      <DependentUpon>ManagedInjector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NetPerformance.resx">
+      <DependentUpon>NetPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessManager.resx">
+      <DependentUpon>ProcessManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewWindowsHoocks.resx">
+      <DependentUpon>ViewWindowsHoocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VirtualMemoryView.resx">
+      <DependentUpon>VirtualMemoryView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils" />
+  </ItemGroup>
+</Project>
