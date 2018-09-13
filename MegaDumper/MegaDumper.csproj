@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{5FF5C138-ED9E-4120-B787-B8300AEE2EB0}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -6,7 +6,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MegaDumper</RootNamespace>
     <AssemblyName>MegaDumper</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Mihai\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -14,6 +14,27 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <ApplicationIcon>..\SND Blue Square.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -38,6 +59,12 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <Reference Include="System" />
@@ -47,40 +74,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs" />
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetectAntidumps.cs" />
+    <Compile Include="DetectAntidumps.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DetectAntidumps.Designer.cs">
       <DependentUpon>DetectAntidumps.cs</DependentUpon>
     </Compile>
-    <Compile Include="EnumAppDomains.cs" />
+    <Compile Include="EnumAppDomains.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EnumAppDomains.Designer.cs">
       <DependentUpon>EnumAppDomains.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmModules.cs" />
+    <Compile Include="FrmModules.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmModules.Designer.cs">
       <DependentUpon>FrmModules.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerateDmp.cs" />
+    <Compile Include="GenerateDmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GenerateDmp.Designer.cs">
       <DependentUpon>GenerateDmp.cs</DependentUpon>
     </Compile>
     <Compile Include="HeapHealper.cs" />
-    <Compile Include="HeapView.cs" />
+    <Compile Include="HeapView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HeapView.Designer.cs">
       <DependentUpon>HeapView.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmptyForm.cs" />
+    <Compile Include="EmptyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EmptyForm.Designer.cs">
       <DependentUpon>EmptyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InstalledFramework.cs" />
+    <Compile Include="InstalledFramework.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InstalledFramework.Designer.cs">
       <DependentUpon>InstalledFramework.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
@@ -104,11 +149,15 @@
     <Compile Include="Utils\MemoryAlloc.cs" />
     <Compile Include="Utils\ProcessStatistics.cs" />
     <Compile Include="Utils\ProcessUtil.cs" />
-    <Compile Include="ViewWindowsHoocks.cs" />
+    <Compile Include="ViewWindowsHoocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ViewWindowsHoocks.Designer.cs">
       <DependentUpon>ViewWindowsHoocks.cs</DependentUpon>
     </Compile>
-    <Compile Include="VirtualMemoryView.cs" />
+    <Compile Include="VirtualMemoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VirtualMemoryView.Designer.cs">
       <DependentUpon>VirtualMemoryView.cs</DependentUpon>
     </Compile>
@@ -156,6 +205,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Utils" />
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
 </Project>
