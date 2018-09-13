@@ -452,8 +452,12 @@ namespace Mega_Dumper
 
         public Timer timer1;
 
-        private void EnumProcesses()
+        private void EnumProcesses(bool filter)
         {
+            if (!filter)
+            {
+                processFilter = new Dictionary<string, string>();
+            }
 
             if (timer1 == null)
             {
@@ -647,7 +651,7 @@ namespace Mega_Dumper
         void MainFormLoad(object sender, EventArgs e)
         {
             EnableDebuggerPrivileges();
-            EnumProcesses();
+            EnumProcesses(false);
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -2217,7 +2221,7 @@ namespace Mega_Dumper
 
         void TestToolStripMenuItemClick(object sender, EventArgs e)
         {
-            EnumProcesses();
+            EnumProcesses(false);
         }
 
         void ExitToolStripMenuItemClick(object sender, EventArgs e)
@@ -2396,7 +2400,7 @@ namespace Mega_Dumper
             {
                 var filterOptions = filter.GetSelectedOptions();
                 this.processFilter = filter.GetSelectedOptions();
-                EnumProcesses();
+                EnumProcesses(true);
             }
         }
     }
