@@ -92,6 +92,12 @@
     <Compile Include="EnumAppDomains.Designer.cs">
       <DependentUpon>EnumAppDomains.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterForm.Designer.cs">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmModules.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EnumAppDomains.resx">
       <DependentUpon>EnumAppDomains.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterForm.resx">
+      <DependentUpon>FilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmModules.resx">
       <DependentUpon>FrmModules.cs</DependentUpon>

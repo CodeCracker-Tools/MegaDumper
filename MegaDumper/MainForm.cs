@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Collections;
+using MegaDumper;
 using ProcessUtils;
 using WinEnumerator;
 using Mega_Dumper;
@@ -207,7 +208,7 @@ namespace Mega_Dumper
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool GetExitCodeProcess(IntPtr hProcess, out uint lpExitCode);
 
-        public void OnTimerEvent(object source, EventArgs e)
+        public void OnTimerEvent(object source, EventArgs e, Dictionary<string, string> filter)
         {
             UInt32[] oldproc = new UInt32[lvprocesslist.Items.Count];
 
@@ -230,6 +231,14 @@ namespace Mega_Dumper
                 {
                     do
                     {
+                        if (filter.ContainsKey("PID"))
+                        {
+                            if (procEntry.th32ProcessID.ToString() != filter["PID"])
+                            {
+                                continue;
+                            }
+                        }
+
                         bool isThere = false;
 
                         for (int i = 0; i < oldproc.Length; i++)
@@ -247,23 +256,32 @@ namespace Mega_Dumper
                             Process theProc = null;
                             string directoryName = "";
                             string processname = procEntry.szExeFile;
+                            if (filter.ContainsKey("processname"))
+                            {
+                                if (!processname.Contains(filter["processname"]))
+                                {
+                                    continue;
+                                }
+                            }
                             string isnet = "false";
 
                             try
                             {
                                 theProc = Process.GetProcessById((int) procEntry.th32ProcessID);
-                                if (IsNetProcess((int) procEntry.th32ProcessID))
-                                {
-                                    isnet = "true";
-                                }
-                                else
-                                {
-                                    isnet = "false";
-                                }
+                                isnet = IsNetProcess((int) procEntry.th32ProcessID) ? "true" : "false";
                             }
                             catch
                             {
                             }
+
+                            if (filter.ContainsKey("isdotnet"))
+                            {
+                                if (filter["isdotnet"] != isnet)
+                                {
+                                    continue;
+                                }
+                            }
+
                             string rname = "";
                             try
                             {
@@ -347,6 +365,13 @@ namespace Mega_Dumper
                                 }
                             }
 
+                            if (filter.ContainsKey("processlocation"))
+                            {
+                                if (directoryName != filter["processlocation"])
+                                {
+                                    continue;
+                                }
+                            }
 
                             // compute size:
                             Graphics g = lvprocesslist.CreateGraphics();
@@ -424,14 +449,20 @@ namespace Mega_Dumper
 
         public Timer timer1;
 
-        private void EnumProcesses()
+        private void EnumProcesses(Dictionary<string, string> filter = null)
         {
+            if (filter == null)
+            {
+                filter = new Dictionary<string, string>();
+            }
+
             if (timer1 == null)
             {
                 timer1 = new Timer();
                 timer1.Interval = 100;
                 timer1.Enabled = true;
-                timer1.Tick += new System.EventHandler(OnTimerEvent);
+                timer1.Tick += (sender, args) => OnTimerEvent(sender, args, filter);
+                // timer1.Tick += new System.EventHandler(OnTimerEvent);
             }
 
             lvprocesslist.Items.Clear();
@@ -456,24 +487,38 @@ namespace Mega_Dumper
                 {
                     do
                     {
+                        if (filter.ContainsKey("PID"))
+                        {
+                            if (procEntry.th32ProcessID.ToString() != filter["PID"])
+                            {
+                                continue;
+                            }
+                        }
                         directoryName = "";
                         processname = procEntry.szExeFile;
+                        if (filter.ContainsKey("processname"))
+                        {
+                            if (!processname.Contains(filter["processname"]))
+                            {
+                                continue;
+                            }
+                        }
                         string statut = ""; //exited
                         try
                         {
                             theProc = Process.GetProcessById((int) procEntry.th32ProcessID);
-
-                            if (IsNetProcess((int) procEntry.th32ProcessID))
-                            {
-                                isnet = "true";
-                            }
-                            else
-                            {
-                                isnet = "false";
-                            }
+                            isnet = IsNetProcess((int) procEntry.th32ProcessID) ? "true" : "false";
                         }
                         catch
                         {
+                        }
+
+                        if (filter.ContainsKey("isdotnet"))
+                        {
+                            if (filter["isdotnet"] != isnet)
+                            {
+                                continue;
+                            }
                         }
 
                         string rname = "";
@@ -560,6 +605,14 @@ namespace Mega_Dumper
                         }
 
 
+                        if (filter.ContainsKey("processlocation"))
+                        {
+                            if (directoryName != filter["processlocation"])
+                            {
+                                continue;
+                            }
+                        }
+
                         // compute size:
                         Graphics g = lvprocesslist.CreateGraphics();
                         Font objFont = new Font("Microsoft Sans Serif", 8);
@@ -595,7 +648,7 @@ namespace Mega_Dumper
         void MainFormLoad(object sender, EventArgs e)
         {
             EnableDebuggerPrivileges();
-            EnumProcesses();
+            //EnumProcesses();
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -1701,7 +1754,7 @@ namespace Mega_Dumper
                 timer1 = new Timer();
                 timer1.Interval = 100;
                 timer1.Enabled = true;
-                timer1.Tick += new System.EventHandler(OnTimerEvent);
+                timer1.Tick += (o, args) => OnTimerEvent(o, args, new Dictionary<string, string>());
             }
         }
 
@@ -2335,6 +2388,16 @@ namespace Mega_Dumper
         {
             lvprocesslist.Sorting = SortOrder.Descending;
             lvprocesslist.Sort();
+        }
+
+        private void filterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FilterForm filter = new FilterForm();
+            if (filter.ShowDialog() == DialogResult.OK)
+            {
+                var filterOptions = filter.GetSelectedOptions();
+                EnumProcesses(filterOptions);
+            }
         }
     }
 }

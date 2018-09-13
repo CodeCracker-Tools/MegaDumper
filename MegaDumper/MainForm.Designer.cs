@@ -79,6 +79,9 @@ namespace Mega_Dumper
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsHoocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installedFrameworkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,9 +92,7 @@ namespace Mega_Dumper
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sortListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -417,6 +418,7 @@ namespace Mega_Dumper
             this.windowsHoocksToolStripMenuItem,
             this.installedFrameworkToolStripMenuItem,
             this.dumpingOptionToolStripMenuItem,
+            this.filterToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.mainToolStripMenuItem.Name = "mainToolStripMenuItem";
             this.mainToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
@@ -428,6 +430,29 @@ namespace Mega_Dumper
             this.testToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.testToolStripMenuItem.Text = "Refresh list";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.TestToolStripMenuItemClick);
+            // 
+            // sortListToolStripMenuItem
+            // 
+            this.sortListToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aZToolStripMenuItem,
+            this.zAToolStripMenuItem});
+            this.sortListToolStripMenuItem.Name = "sortListToolStripMenuItem";
+            this.sortListToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.sortListToolStripMenuItem.Text = "Sort list";
+            // 
+            // aZToolStripMenuItem
+            // 
+            this.aZToolStripMenuItem.Name = "aZToolStripMenuItem";
+            this.aZToolStripMenuItem.Size = new System.Drawing.Size(109, 26);
+            this.aZToolStripMenuItem.Text = "A-Z";
+            this.aZToolStripMenuItem.Click += new System.EventHandler(this.aZToolStripMenuItem_Click);
+            // 
+            // zAToolStripMenuItem
+            // 
+            this.zAToolStripMenuItem.Name = "zAToolStripMenuItem";
+            this.zAToolStripMenuItem.Size = new System.Drawing.Size(109, 26);
+            this.zAToolStripMenuItem.Text = "Z-A";
+            this.zAToolStripMenuItem.Click += new System.EventHandler(this.zAToolStripMenuItem_Click);
             // 
             // processManagerToolStripMenuItem
             // 
@@ -502,28 +527,12 @@ namespace Mega_Dumper
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItemClick);
             // 
-            // sortListToolStripMenuItem
+            // filterToolStripMenuItem
             // 
-            this.sortListToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aZToolStripMenuItem,
-            this.zAToolStripMenuItem});
-            this.sortListToolStripMenuItem.Name = "sortListToolStripMenuItem";
-            this.sortListToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
-            this.sortListToolStripMenuItem.Text = "Sort list";
-            // 
-            // aZToolStripMenuItem
-            // 
-            this.aZToolStripMenuItem.Name = "aZToolStripMenuItem";
-            this.aZToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.aZToolStripMenuItem.Text = "A-Z";
-            this.aZToolStripMenuItem.Click += new System.EventHandler(this.aZToolStripMenuItem_Click);
-            // 
-            // zAToolStripMenuItem
-            // 
-            this.zAToolStripMenuItem.Name = "zAToolStripMenuItem";
-            this.zAToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.zAToolStripMenuItem.Text = "Z-A";
-            this.zAToolStripMenuItem.Click += new System.EventHandler(this.zAToolStripMenuItem_Click);
+            this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.filterToolStripMenuItem.Text = "Filter";
+            this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -602,5 +611,6 @@ namespace Mega_Dumper
         private System.Windows.Forms.ToolStripMenuItem sortListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aZToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
     }
 }
